@@ -5,5 +5,5 @@ Dir.mkdir 'auto-packaging\src'
 Dir.mkdir 'auto-packaging\src\staticresources'
 
 FileUtils.copy_entry 'src/', 'auto-packaging/src'
-FileUtils.cp 'auto-package.xml', 'auto-packaging\src\package.xml'
-puts "Auto packaging completed.."
+FileUtils.cp 'auto-package.xml', 'auto-packaging/src/package.xml'
+puts "Auto packaging completed..."

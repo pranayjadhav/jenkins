@@ -18,15 +18,7 @@
     </types>
     <types>
         <members>*</members>
-        <name>CustomLabels</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CustomField</name>
-    </types>
-	<types>
-		<members>*</members>
-		<name>StaticResource</name>
-	</types>
+	<name>StaticResource</name>
+     </types>
     <version>37.0</version>
 </Package>
