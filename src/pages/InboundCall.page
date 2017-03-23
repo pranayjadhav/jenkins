@@ -1,0 +1,68 @@
+<apex:page controller="WeworkEngine" standardStylesheets="false"
+    extensions="InboundCallController" sidebar="false" showHeader="false" cache="false">
+    
+    <c:GlobalResources local="{!$CurrentPage.parameters.local}"
+        Vendor_CSS="bootstrap/css/bootstrap-toggle.min.css,bootstrap/js/bootstrap-toggle.min.js" Vendor_JS="jquery/moment.min.js,jquery/xdate.js,enz-table/enz-table.js,angu-complete/angucomplete-ie8.js,angu-complete/angular-touch.min.js,angu-complete/angucomplete-ie8.css" 
+        Application_JS="error-manager.js,ng-tags-input.min.js,angucomplete.js,bookTours.js,salesforce.js,inboundPageController.js,lookupApp.js,common-controls.js"
+        Application_CSS="angucomplete.css,simple-sidebar.css,pagestyle.css,ng-tags-input.bootstrap.min.css,ng-tags-input.min.css,applicationCSS.css,inboundCall.css,lookup-app.css,lookupapplication.css" />
+
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inbound Call</title>
+    </head>
+    <body>
+        <div id="spinnerContainer"></div>
+        <div ng-app="inboundCallApp" ng-controller="inboundCallController">
+           <br></br>
+           <div id="page-content-wrapper" class="scroll-window" >
+             <div class="panel panel-default panel-margin" >
+                <div class="panel-heading">
+                      <div class="row header-text-align">
+                      <label class="default-font-header"><b>Inbound Call</b></label> 
+                      
+                      <b><input type="text" class="form-control phone-text" placeholder="Search" ng-model="phoneTextToSearch"></input></b> 
+                      <button type="button" class="btn btn-primary btn-sm default-font defaut-search-button-margin" ng-click="getContactAndRelatedJourneys(true)">
+                          <span class="glyphicon glyphicon-search"></span> Search
+                      </button>
+                     </div><!-- End of row -->
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                   <div class="col-md-4">
+                    
+                      <button class="fa fa-user-plus btn btn-primary create-new-contact" ng-click="loadContactPopup()"><span class="default-font">&nbsp;&nbsp;New Lead &amp; Journey &nbsp;&nbsp;</span></button>
+                  
+                  </div>
+                   <div class="col-md-5"></div>
+                   <div class="col-md-3">
+                       <div class="float-number-element"> 
+                        <div class="pager pull-right" ng-show="showPageIgnation">
+                            <nav class="pagination">
+                                <a class="first" ng-click="setPage(-1)">&lt;&lt;</a>
+                                <a class="prev" ng-click="setPage(currentPage-1)">&lt;</a>
+                                <div class="pagedisplay ng-binding">{{currentPage}}/{{totalPageCount}}</div>
+                                <a ng-click="setPage(currentPage+1)">&gt;</a>
+                                <a ng-click="setPage(totalPageCount)">&gt;&gt;</a>
+                                <select class="pagesize ng-pristine ng-untouched ng-valid" ng-options="option as option for option in pageSizeOptions" ng-model="pageSize" ng-change="setPage(1)"><option value="0" selected="selected">20</option><option value="1">50</option><option value="2">100</option><option value="3">500</option><option value="4">1000</option></select>
+                            </nav>
+                       </div>
+                      </div>
+                    </div>
+                </div>
+                <div id="newContactPopupDiv"></div>
+                <div ng-repeat="contactRecord in mapContactJourny">
+                    <inbound-calls contact-record='contactRecord' lead-source='LeadSourceValOptions' journey-source='JourneySourceValOptions' journey-records='contactRecord.lstJourneyContacts' role-source="roleSource"></inbound-calls>
+                </div>
+               <center> 
+                <div ng-show="mapAllContactJourny.length==0" class="show-information-for-search">
+                    <input id="inboundNumber" type="hidden" name="country" value="{!inboundNumber}"/> Click on 'New Contact &amp; Journey' button to create new contact or enter phone number to search contacts and journeys
+                </div>
+               </center>
+                </div><!-- Panel Body End-->
+              </div><!-- Panel End -->
+           </div>    
+        </div> <!-- Container End-->
+    </body>
+</apex:page>

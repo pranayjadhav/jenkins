@@ -1,0 +1,89 @@
+<apex:page standardStylesheets="false" sidebar="false" showChat="false" showHeader="false" cache="false" controller="WeworkEngine">
+  	<apex:stylesheet value="{!URLFOR($Resource.testframeworkresource,'/vendor_css/fontawesome/css/font-awesome.min.css')}"/>
+   	<apex:stylesheet value="{!URLFOR($Resource.testframeworkresource,'/vendor_css/bootstrap/css/bootstrap.min.css')}"/>
+   	<apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/vendor_js/jquery/jquery.js')}"/>
+   	<apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/vendor_js/angular/angular.js')}"/>
+    <head>
+        <title>Automated Test Editor</title>
+        <script>
+            window.sessionId = '{!$Api.Session_ID}';
+            window.currentURL = '{!currentSandboxPath}';
+            if('{!$CurrentPage.parameters.local}' == 'true')
+                window.resourcePath = 'https://localhost/testframeworkresource';
+            else
+                window.resourcePath = currentURL + '{!URLFOR($Resource.testframeworkresource)}';
+            currentURL = currentURL.replace('visual.force', 'salesforce');
+            if(currentURL.includes('//c.'))
+                currentURL = currentURL.replace('//c.', '//');    
+        </script>
+    </head>
+    <body>
+        <div id="wrapper" ng-app="automatedTesterApp" ng-controller="automatedTesterAppController">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                  <div class="container">
+                  <div class="navbar-header">
+                              <a class="navbar-brand" href="#">Automated Tester</a>
+                  </div>
+                  </div>
+            </nav>
+            <div class="container" Id="container-block">
+                <div class="row">
+                        <div class="col-lg-6">
+                              <label class="field-lbl">Test Suite</label>
+                            <select class="form-control" ng-model="slectedScript" ng-change="onScriptSelection(slectedScript)" ng-options="option as option for option in allScripts"></select>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label class="field-lbl">Custom Suite(Javascript editor)</label>
+                        <div ui-ace="ui-ace" ng-model="scriptSuiteData"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="field-lbl"></label>
+                    <div class="col-lg-2"><button class="btn btn-primary" style="margin-top: 25px;" ng-click="runTestSuite()">Run Test Suite <i class="fa fa-spinner fa-spin" ng-show="isProcessing"></i></button></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <style>
+            .field-lbl {
+                display: block;
+                font-weight: bold;
+            }
+            #container-block{
+                  margin-top: 60px;
+            }
+            textarea { 
+               resize:vertical;
+            }
+            pre#json-renderer {
+              border: 1px solid #aaa;
+              padding: 0.5em 1.5em;
+            }
+            .ace_editor { height: 400px; width: 100% }
+            @media (min-width: 1200px)
+                #container-block,.container {
+                    width: auto;
+                }
+            }
+        </style>
+        <apex:variable value="" var="" rendered="{!$CurrentPage.parameters.local == 'true'}" >
+            <script lang="javascript" src="https://localhost/testframeworkresource/vendor_js/angular/angular-mocks.js"></script>
+            <script lang="javascript" src="https://localhost/testframeworkresource/application_js/restapiController.js"></script>
+            <script src="/soap/ajax/10.0/connection.js"></script >
+            <script src="/soap/ajax/10.0/apex.js"> </script >
+            <script lang="javascript" src="https://localhost/testframeworkresource/vendor_js/angular/ace.js"></script>
+            <script lang="javascript" src="https://localhost/testframeworkresource/vendor_js/angular/ui-ace.min.js"></script>
+            <script lang="javascript" src="https://localhost/testframeworkresource/application_js/automatedTester.js"></script>
+        </apex:variable>
+        <apex:variable value="" var="" rendered="{!$CurrentPage.parameters.local != 'true'}" >
+            <apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/vendor_js/angular/angular-mocks.js')}" />
+            <apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/application_js/restapiController.js')}" />
+            <script src="/soap/ajax/10.0/connection.js"> </script >
+            <script src="/soap/ajax/10.0/apex.js"> </script >
+            <apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/vendor_js/angular/ace.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/vendor_js/angular/ui-ace.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.testframeworkresource,'/application_js/automatedTester.js')}"/>
+        </apex:variable>
+</apex:page>

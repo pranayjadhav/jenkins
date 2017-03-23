@@ -1,0 +1,14 @@
+<apex:page controller="WeworkEngine" standardStylesheets="false" sidebar="false" showHeader="false" cache="false">
+    <c:GlobalResources local="{!$CurrentPage.parameters.local}" Vendor_CSS="" Vendor_JS="jquery/xdate.js," Application_JS="error-manager.js,ng-tags-input.min.js,enz-table.js,angucomplete.js,bookTours.js,salesforce.js" Application_CSS="angucomplete.css,simple-sidebar.css,pagestyle.css,ng-tags-input.bootstrap.min.css,ng-tags-input.min.css,applicationCss.css" />
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Book Tours</title>
+    </head>
+    <body>
+        <div ng-app="bookToursApp"> 
+            <book-Tours> </book-Tours>
+        </div>
+    </body>
+</apex:page>

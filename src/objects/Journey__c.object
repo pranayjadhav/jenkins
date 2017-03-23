@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>JourneyDetails</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>We are going to use this object as Sales Journey of the user. Which begins when a person shows interest in one of our products or we decide to reach out to show our products.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Building_Interested_In__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Building Interested In</label>
+        <referenceTo>Building__c</referenceTo>
+        <relationshipLabel>Journeys</relationshipLabel>
+        <relationshipName>Journeys</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Source_Detail__c</fullName>
+        <description>Details of Lead Source from where Tour was booked. e.g. specific form of the website.</description>
+        <externalId>false</externalId>
+        <label>Lead Source Detail</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Source__c</fullName>
+        <description>Source of the Tour, how it was booked. Lead_Source__c.</description>
+        <externalId>false</externalId>
+        <label>Lead Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>WeWork.com</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inbound Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inbound Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WeLive.com</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Lost_Reason__c</fullName>
+        <description>Reason why we lost the journey</description>
+        <externalId>false</externalId>
+        <label>Lost Reason</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitor Solution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duplicate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fake Lead</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unqualified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unrelated to Sales Inquiries</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <picklist>
+            <picklistValues>
+                <fullName>I don&apos;t know</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple cities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amsterdam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Atlanta</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Austin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Be&apos;er Sheva</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Berkeley</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Berlin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Boston</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chicago</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Herzliya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hing Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>London</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Los Angeles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico City</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Montreal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New York City</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philadelphia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>San Francisco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>San Jose</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seattle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seoul</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shanghai</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tel Aviv</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wahington, D.C.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Mobile__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Primary_Contact__r.MobilePhone &lt;&gt; null, 
+HYPERLINK(&quot;javascript:sendCTIMessage(&apos;/CLICK_TO_DIAL?DN=&apos;+encodeURIComponent(&apos;&quot; + Primary_Contact__r.MobilePhone + &quot;&apos;)+&apos;&amp;ID=&quot;+Id+&quot;&amp;ENTITY_NAME=Contact&amp;OBJECT_NAME=&apos;+encodeURIComponent(&apos;&quot;+ Primary_Contact__r.LastName +&quot;&apos;)+&apos;&amp;DISPLAY_NAME=&apos;+encodeURIComponent(&apos;Contact&apos;))&quot;,  Primary_Contact__r.MobilePhone + IMAGE(&apos;/img/btn_dial_inline.gif&apos;, &apos;&apos;)), &apos;&apos;)</formula>
+        <label>Mobile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NMD_Next_Contact_Date__c</fullName>
+        <description>Date on which Journey Primary Member should be next contacted on.
+
+This is key to manage the reminders for the Journey.</description>
+        <externalId>false</externalId>
+        <label>Next Contact Date</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Other_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Reason</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Primary_Contact__c &lt;&gt; null, IF( Primary_Contact__r.Phone  &lt;&gt; null, 
+HYPERLINK(&quot;javascript:sendCTIMessage(&apos;/CLICK_TO_DIAL?DN=&apos;+encodeURIComponent(&apos;&quot; + Primary_Contact__r.Phone + &quot;&apos;)+&apos;&amp;ID=&quot;+Id+&quot;&amp;ENTITY_NAME=Contact&amp;OBJECT_NAME=&apos;+encodeURIComponent(&apos;&quot;+ Primary_Contact__r.LastName +&quot;&apos;)+&apos;&amp;DISPLAY_NAME=&apos;+encodeURIComponent(&apos;Contact&apos;))&quot; , Primary_Contact__r.Phone +  IMAGE(&apos;/img/btn_dial_inline.gif&apos;, &apos;&apos;) ), &apos;&apos;),IF( Primary_Lead__r.Phone  &lt;&gt; null, 
+HYPERLINK(&quot;javascript:sendCTIMessage(&apos;/CLICK_TO_DIAL?DN=&apos;+encodeURIComponent(&apos;&quot; + Primary_Lead__r.Phone + &quot;&apos;)+&apos;&amp;ID=&quot;+Id+&quot;&amp;ENTITY_NAME=Contact&amp;OBJECT_NAME=&apos;+encodeURIComponent(&apos;&quot;+ Primary_Lead__r.LastName +&quot;&apos;)+&apos;&amp;DISPLAY_NAME=&apos;+encodeURIComponent(&apos;Lead&apos;))&quot; , Primary_Lead__r.Phone +  IMAGE(&apos;/img/btn_dial_inline.gif&apos;, &apos;&apos;) ), &apos;&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>Primary Contact of the Journey</description>
+        <externalId>false</externalId>
+        <label>Primary Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Journeys</relationshipLabel>
+        <relationshipName>Journeys</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>If journey is for a Lead this will be the Primary Lead. Only Primary Contact or Primary Lead can be specified not both.</description>
+        <externalId>false</externalId>
+        <label>Primary Lead</label>
+        <referenceTo>Lead</referenceTo>
+        <relationshipLabel>Journeys</relationshipLabel>
+        <relationshipName>Journeys</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Referrer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Referrer</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Journeys (Referrer)</relationshipLabel>
+        <relationshipName>Journeys1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Number__c</fullName>
+        <description>Stage Number of current Stage, This is how we can determine where in the Journey Customer is.</description>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(Stage__c),
+&quot;Started&quot;,1.0,
+&quot;Tour Booked&quot;, 10.0,
+&quot;Tour Completed&quot;, 50.0,
+&quot;Waitlisted&quot;, 70.0,
+&quot;Completed-Lost&quot;, 100.0,
+&quot;Completed-Won&quot;, 100.0,
+0.0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Stage #</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <description>Stage of the Journey, which will tell us the maximum progress the customer has made.
+
+It will not give us latest Stage but will give maximum stage that is if the journey is completed or lost, or if it is stuck in waitlist.</description>
+        <externalId>false</externalId>
+        <label>Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Started</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tour Booked</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tour Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waitlisted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed-Won</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed-Lost</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>UUID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Globally Unique Identifier of the record used by all systems at WeWork</description>
+        <externalId>true</externalId>
+        <label>UUID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>utm_campaign__c</fullName>
+        <description>one of the utm_ parameter passed by websites and other external system</description>
+        <externalId>false</externalId>
+        <label>utm_campaign</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>utm_campaign_id__c</fullName>
+        <description>one of the utm_ parameter passed by websites and other external system</description>
+        <externalId>false</externalId>
+        <label>utm_campaign_id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>utm_content__c</fullName>
+        <description>one of the utm_ parameter passed by websites and other external system</description>
+        <externalId>false</externalId>
+        <label>utm_content</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>utm_medium__c</fullName>
+        <description>one of the utm_ parameter passed by websites and other external system</description>
+        <externalId>false</externalId>
+        <label>utm_medium</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>utm_source__c</fullName>
+        <description>one of the utm_ parameter passed by websites and other external system</description>
+        <externalId>false</externalId>
+        <label>utm_source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>utm_term__c</fullName>
+        <description>one of the utm_ parameter passed by websites and other external system</description>
+        <externalId>false</externalId>
+        <label>utm_term</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Journey</label>
+    <listViews>
+        <fullName>Created_Today_Journey</fullName>
+        <columns>NAME</columns>
+        <columns>Stage__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>NMD_Next_Contact_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operation>equals</operation>
+            <value>Started</value>
+        </filters>
+        <label>Journey Created Today</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Due_or_Overdue_Today</fullName>
+        <columns>NAME</columns>
+        <columns>NMD_Next_Contact_Date__c</columns>
+        <columns>Stage__c</columns>
+        <columns>Phone__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>NMD_Next_Contact_Date__c</field>
+            <operation>lessOrEqual</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operation>equals</operation>
+            <value>Started</value>
+        </filters>
+        <label>My Due or Overdue Today</label>
+    </listViews>
+    <nameField>
+        <label>Customer</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Journeys</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Either_Contact_or_Lead_exist_on_Journey</fullName>
+        <active>true</active>
+        <description>Rule for Journey should not be related to a Contact as well as Lead at a same time.</description>
+        <errorConditionFormula>NOT(OR(AND((Primary_Contact__c != null),(Primary_Lead__c == null)),AND((Primary_Contact__c == null),(Primary_Lead__c != null)),AND((Primary_Contact__c == null),(Primary_Lead__c == null))))</errorConditionFormula>
+        <errorMessage>Either a Primary Contact or Primary Lead can be associated with a journey at the same time</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Make_Lost_Reason_field_required</fullName>
+        <active>true</active>
+        <description>When a user changes the Stage value of the Journey to &quot;Completed-Lost&quot; then &quot;Lost Reason&quot; Field should be required while saving the record.</description>
+        <errorConditionFormula>IF( AND( TEXT( Stage__c ) = &quot;Completed-Lost&quot;, TEXT( Lost_Reason__c )= &quot;&quot;),True,False)</errorConditionFormula>
+        <errorMessage>Lost Reason field is required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Must_specify_Primary_Contact_or_Lead</fullName>
+        <active>true</active>
+        <description>Rule for check either of the lookup field (Primary Contact / Primary Lead) is updated on the Journey record.</description>
+        <errorConditionFormula>AND((Primary_Contact__c == null),(Primary_Lead__c == null))</errorConditionFormula>
+        <errorMessage>Please select either a Primary Contact or a Primary Lead for the journey record</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Availability</fullName>
+        <availability>online</availability>
+        <description>This will open the vf page for availability</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Availability</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/support/console/28.0/integration.js&quot;)} 
+var url = &apos;/apex/Availability?journeyId={!Journey__c.Id}&apos;; 
+if (sforce.console.isInConsole()) { 
+srcUp(url); 
+} 
+else {
+window.open(&apos;/apex/Availability?journeyId={!Journey__c.Id}&apos;,&apos;/apex/Availability?journeyId={!Journey__c.Id}&apos;);
+ }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Follow_Up_Call</fullName>
+        <availability>online</availability>
+        <description>This will add follow up task and should automatically close any earlier follow up task.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Follow-Up Call</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>function PopupCenterDual(url, title, w, h) { 
+// Fixes dual-screen position Most browsers Firefox 
+var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left; 
+var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top; 
+width = screen.width;//window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width; 
+height = screen.height; //window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height; 
+
+var left = ((width / 2) - (w / 2)) + dualScreenLeft; 
+var top = ((height / 2) - (h / 2)) + dualScreenTop; 
+var newWindow = window.open(url, title, &apos;scrollbars=yes, width=&apos; + w + &apos;, height=&apos; + h + &apos;, top=&apos; + top + &apos;, left=&apos; + left); 
+
+// Puts focus on the newWindow 
+if (window.focus) { 
+newWindow.focus(); 
+} 
+} 
+var newWindow = PopupCenterDual(&apos;/apex/FollowupCalls?journeyId={!Journey__c.Id}&apos; ,&apos;FollowUpCalls&apos;,400,400);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Manage_Tours</fullName>
+        <availability>online</availability>
+        <description>Will schedule the tour with ScheduleTours page.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Manage Tours</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>var h1 = screen.height;
+var w1 = screen.width;
+{!REQUIRESCRIPT(&quot;/support/console/28.0/integration.js&quot;)}
+var url = &apos;/apex/ManageTours?journeyId={!Journey__c.Id}&apos;;
+if (sforce.console.isInConsole()) { 
+srcUp(url);
+} 
+else {
+var newWindow = window.open(&apos;/apex/ManageTours?journeyId={!Journey__c.Id}&apos; ,&apos;&apos;,&apos;width=w1,height=h1&apos;);
+newWindow = window.focus();
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Refresh</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Refresh</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>self.location.reload(true);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Reschedule_Tour</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Reschedule Tour</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.open(&apos;/apex/book_tours?journeyId={!Journey__c.Id}&amp;reschedule=true&apos;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_Gmail</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send Gmail</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://mail.google.com/mail?view=cm&amp;tf=0</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Unqualify</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Unqualify</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>function PopupCenterDual(url, title, w, h) { 
+// Fixes dual-screen position Most browsers Firefox 
+var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left; 
+var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top; 
+width = screen.width;//window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width; 
+height = screen.height; //window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height; 
+
+var left = ((width / 2) - (w / 2)) + dualScreenLeft; 
+var top = ((height / 2) - (h / 2)) + dualScreenTop; 
+var newWindow = window.open(url, title, &apos;scrollbars=yes, width=&apos; + w + &apos;, height=&apos; + h + &apos;, top=&apos; + top + &apos;, left=&apos; + left); 
+
+// Puts focus on the newWindow 
+if (window.focus) { 
+newWindow.focus(); 
+} 
+} 
+var newWindow = PopupCenterDual(&apos;/apex/CompleteLost?journeyId={!Journey__c.Id}&apos; ,&apos;CompleteLost&apos;,400,350);</url>
+    </webLinks>
+</CustomObject>

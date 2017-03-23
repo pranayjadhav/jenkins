@@ -1,0 +1,27 @@
+<apex:page controller="WeworkEngine" standardStylesheets="false"
+    sidebar="false" showHeader="false" cache="false">
+    <c:GlobalResources local="{!$CurrentPage.parameters.local}"
+        Vendor_CSS="bootstrap/css/bootstrap-toggle.min.css,bootstrap/js/bootstrap-toggle.min.js" 
+        Vendor_JS="jquery/moment.min.js,angu-complete/angucomplete-ie8.js,angu-complete/angular-touch.min.js,angu-complete/angucomplete-ie8.css"
+        Application_JS="error-manager.js,angucomplete.js,bookTours.js,salesforce.js,common-controls.js"
+        Application_CSS="applicationCSS.css" />
+    <apex:includeScript value="/support/console/25.0/integration.js"/>
+    <script type="text/javascript">
+        sforce.console.setTabTitle('Manage Tours');
+    </script>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manage Tours</title>
+    </head>
+    <body>
+    <div id="spinnerContainer"></div>
+        <div id="wrapper" class="scroll-window" ng-app="bookToursApp" ng-controller="bookToursCtrl">
+           <div class="container-fluid" style="margin-top: 25px">
+               <book-tours>
+               </book-tours>
+           </div>
+        </div>
+    </body>
+</apex:page>

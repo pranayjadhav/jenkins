@@ -1,0 +1,84 @@
+<apex:page controller="WeBoardController" sidebar="false" readOnly="true">
+	<apex:styleSheet value="{!URLFOR($Resource.weboard, '/css/ui-lightness/jquery-ui-1.10.4.css')}"/>
+	<apex:styleSheet value="{!URLFOR($Resource.weboard, '/css/weboard.css')}"/>
+	<style>
+		span.sort-arrow { background-image:url({!URLFOR($Resource.weboard, '/img/sort-vector.png')}); }
+	</style>
+	
+	<script src="{!URLFOR($Resource.weboard, '/js/jquery-1.10.2.js')}"></script>
+	<script src="{!URLFOR($Resource.weboard, '/js/jquery-ui-1.10.4.js')}"></script>
+			
+	<div class="report">
+		<h1 class="title">WeWork Stats</h1>
+	
+		<div class="switcher">
+			<c:weboardReportSwitcher value="0" />
+		</div>	
+		
+		<div class="filter">
+			<c:weboardReportFilter fromDate="{!FromDateString}" toDate="{!ToDateString}" url="{!$Page.WeBoard}" />
+		</div>
+		
+		<!-- city table -->
+		<div class="summary">
+			<c:weboardCityReport />
+			<c:weboardLeadSourceReport />
+		</div>
+		
+		<div class="figures">
+			<c:weboardCityPlot />
+		</div>
+	</div>
+	
+	<script src="{!URLFOR($Resource.weboard, '/js/weboard.js')}"></script>
+	<script src="{!URLFOR($Resource.weboard, '/js/sort.js')}"></script>	
+	<script>
+		var jq = jQuery.noConflict(true);				
+
+		var	_progressSrc = '{!URLFOR($Resource.weboard, '/img/ajax-loader.gif')}';
+		var _collapseSrc = '{!URLFOR($Resource.weboard, '/img/collapse.png')}';
+		
+		attachExpandHandler('a.city-buid', '{!$Page.WeBoardBuildingReport}', function(scope) {
+			attachExpandHandler(scope.find('a.buid-lead'), '{!$Page.WeBoardLeadSourceReport}', function(scope) {
+				scope.find('a').remove();
+				bindSortArrow(scope);
+			});
+			bindSortArrow(scope);
+		});	
+		
+		attachExpandHandler('a.city-lead', '{!$Page.WeBoardLeadSourceReport}', function(scope) {
+			attachExpandHandler(scope.find('a.lead-buid'), '{!$Page.WeBoardBuildingReport}', function(scope) {
+				scope.find('a.buid-lead').remove();
+				bindSortArrow(scope);
+			});
+			scope.find('a.lead-city').remove();
+			bindSortArrow(scope);		
+		});
+		
+		attachExpandHandler('a.lead-city', '{!$Page.WeBoardCityReport}', function(scope) {
+			attachExpandHandler(scope.find('a.city-buid'), '{!$Page.WeBoardBuildingReport}', function(scope){
+				scope.find('a.buid-lead').remove();		
+				bindSortArrow(scope);	
+			});
+			attachExpandHandler(scope.find('a.city-user'), '{!$Page.WeBoardUserReport}', function(scope){
+				bindSortArrow(scope);
+			});
+			scope.find('a.city-lead').remove();
+			bindSortArrow(scope);
+		});
+		
+		attachExpandHandler('a.lead-buid', '{!$Page.WeBoardBuildingReport}', function(scope) {
+			scope.find('a.buid-lead').remove();
+			bindSortArrow(scope);
+		});
+		
+		function bindSortArrow(scope) {
+			scope.find('.sort-arrow').click(function(e) {
+				sorter.sortTable(e);
+			});
+		}
+		
+		var sorter = new reportTableSorter();
+		bindSortArrow(jq(document));
+	</script>
+</apex:page>

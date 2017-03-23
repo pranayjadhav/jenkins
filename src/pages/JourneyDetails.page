@@ -1,0 +1,146 @@
+<apex:page standardController="Journey__c" extensions="JourneyDetailController" >
+    <apex:includeScript value="/support/console/31.0/integration.js"/>
+    <head>
+      <script type="text/javascript">
+        function testSetTabTitle() {
+            sforce.console.setTabTitle('Journey : {!Journey__c.Name}'); 
+        }
+        var pageLoad = window.onload;
+          window.onload = function() {
+                if (pageLoad) {
+                        pageLoad();
+                }
+                  testSetTabTitle();
+          }
+          
+          function refreshJourneyDetails() {
+              refreshJourney();
+          }
+          
+          function testCloseTab() {
+            sforce.console.getEnclosingTabId(closeSubtab);
+            sforce.console.refreshNavigationTab();
+            refreshJourneyDetails(); 
+        }
+        
+        var closeSubtab = function closeSubtab(result) {
+            var tabId = result.id;            
+            sforce.console.closeTab(tabId);                       
+        };
+        
+        function refreshRelatedDetails() {
+        	refreshDetails();
+        }
+    </script>        
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+ 	<script>
+		$( function() {
+			$( "#menu" ).menu();
+		} );
+  	</script>
+    	<style>
+    		.showListButton{
+            background-position: 1px 0px !important;
+        }
+        .hideListButton{
+            background-position: 1px -12px !important;
+        }
+        body .bPageBlock .pbBody .pbSubheader {
+            color: black !important;
+        }
+        ul {
+            list-style-type: none;
+        	-webkit-padding-start: 0px !important;
+        } 
+        body .googleDocMutton .menuButtonMenu a:hover, body .searchCustomization .menuButton .menuButtonMenu a:hover, #browseTags .menuButton .menuButtonMenu a:hover, body .bMyTask .menuButton .menuButtonMenu input.theOption, body .menuButton .menuButtonMenu a:hover {
+        	background: #007fff;
+        	color: #FFF;
+        	text-decoration: none;
+        	padding: 4px 10px;        	 
+        } 
+        
+		#sub-menu {
+		   	max-height:250px;
+		   	overflow-x:hidden;
+		   	overflow-y:auto;  
+		}
+		#custom-email a {
+			text-decoration: none;
+        	padding: 5px 10px;
+            padding-left: 15px;
+		}
+		#custom-email a:hover{
+			background: #007fff;
+        	color: #FFF;
+        	text-decoration: none;
+        	padding: 5px 10px;
+            padding-left: 15px;
+		}
+    	</style>        
+    </head>
+    <!--<apex:pageBlock title="Quick Calls">
+        <apex:pageBlockSection columns="1">            
+            <apex:dataTable value="{!Journey__c}" var="journey" width="350px">
+                <apex:column rendered="{!(Journey__c.Primary_Contact__r.Phone != null)}">
+                    <apex:facet name="header">Phone</apex:facet>
+                    <a href="javascript:void(0);" onclick="disableClicked(this, 'Click to dial disabled');sendCTIMessage('/CLICK_TO_DIAL?DN='+encodeURIComponent('{!journey.Primary_Contact__r.Phone}')+'&ID={!journey.Id}&ENTITY_NAME=Contact&OBJECT_NAME='+encodeURIComponent('{!journey.Primary_Contact__r.Name}')+'&DISPLAY_NAME='+encodeURIComponent('Contact'));return false;"><span style="font-size:15px">{!journey.Primary_Contact__r.Phone}</span><img src="/img/btn_dial_inline.gif" alt="Click to dial" width="16" height="10" title="Click to dial"/><img src="/img/btn_nodial_inline.gif" alt="Click to dial disabled" width="16" height="10" style="display:none;" title="Click to dial disabled"/></a>
+                </apex:column>
+                <apex:column rendered="{!(Journey__c.Primary_Contact__r.MobilePhone != null)}">
+                    <apex:facet name="header">Mobile</apex:facet>
+                    <a href="javascript:void(0);" onclick="disableClicked(this, 'Click to dial disabled');sendCTIMessage('/CLICK_TO_DIAL?DN='+encodeURIComponent('{!journey.Primary_Contact__r.MobilePhone}')+'&ID={!journey.Id}&ENTITY_NAME=Contact&OBJECT_NAME='+encodeURIComponent('{!journey.Primary_Contact__r.Name}')+'&DISPLAY_NAME='+encodeURIComponent('Contact'));return false;"><span style="font-size:15px">{!journey.Primary_Contact__r.MobilePhone}</span><img src="/img/btn_dial_inline.gif" alt="Click to dial" width="16" height="10" title="Click to dial"/><img src="/img/btn_nodial_inline.gif" alt="Click to dial disabled" width="16" height="10" style="display:none;" title="Click to dial disabled"/></a>
+                </apex:column>
+            </apex:dataTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>-->
+    
+    <apex:form >
+        <apex:actionFunction name="refreshJourney" rerender="journeyDetails" />
+        <apex:actionFunction name="refreshDetails" rerender="relatedDetails" />
+    </apex:form>    
+    
+    <apex:pageBlock mode="detail" id="journeyDetails">    	
+    	<div class="menuButton" id="MyMenu">
+    	<div class="menuButtonButton" id="MyMenuButton"><span id="menuLabel" tabindex="0" style="">Send Email</span></div>
+    	<div class="menuButtonMenu" id="MyMenuMenu">
+    		<ul id="menu">
+    		  <li><a id="custom-email" href="/_ui/core/email/author/EmailAuthor" >Custom Email</a></li>
+    		  <li><hr/></li>
+              <apex:repeat value="{!mapEmailTemplate}" var="folderName" id="theRepeat">
+	        	  <li>
+	        	  	<div>
+                        <apex:outputLink title="{!folderName}" value="#" >
+		                	<apex:outputText value="{!folderName}"></apex:outputText> 
+		                </apex:outputLink>	                
+	               	</div>
+                    <ul id="sub-menu">
+				      <apex:repeat value="{!mapEmailTemplate[folderName]}" var="emailTemplate" id="theRepeat">
+				      	<li>
+	        	  			<div>
+				      			<apex:outputLink title="{!emailTemplate.Name}" value="/_ui/core/email/author/EmailAuthor?template_id={!emailTemplate.Id}&p2_lkid={!toId}">
+		                			<apex:outputText value="{!emailTemplate.Name}"></apex:outputText> 
+		                		</apex:outputLink>
+				      		</div>
+				      	</li> 
+				      </apex:repeat>
+				    </ul>
+	               </li>
+    			</apex:repeat>    			    			    			
+    		</ul>            
+    	</div>
+    </div>
+	<script type="text/javascript">
+	       new MenuButton('MyMenu', false);
+	</script>    	
+        <apex:detail subject="{!Journey__c.Id}" relatedList="true" title="true" inlineEdit="true" oncomplete="refreshRelatedDetails()" />
+    </apex:pageBlock>
+  	<apex:form id="relatedDetails">    
+	    <apex:pageBlock rendered="{!(Journey__c.Primary_Contact__c != null)}" mode="detail">
+	      <apex:detail subject="{!Journey__c.Primary_Contact__c}" relatedList="true" title="true" inlineEdit="true" oncomplete="refreshJourneyDetails()"  />
+	   	</apex:pageBlock>
+	   	<apex:pageBlock rendered="{!(Journey__c.Primary_Lead__c != null)}" mode="detail">
+	      <apex:detail subject="{!Journey__c.Primary_Lead__c}" relatedList="true" title="true" inlineEdit="true" oncomplete="refreshJourneyDetails()"  />
+	   	</apex:pageBlock>
+   	</apex:form>
+</apex:page>

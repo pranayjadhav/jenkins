@@ -1,0 +1,44 @@
+<apex:page controller="LeaderBoardController" sidebar="false" readOnly="true">
+	<apex:styleSheet value="{!URLFOR($Resource.weboard, '/css/ui-lightness/jquery-ui-1.10.4.css')}"/>
+	<apex:styleSheet value="{!URLFOR($Resource.weboard, '/css/weboard.css')}"/>
+	<style>
+		span.sort-arrow { background-image:url({!URLFOR($Resource.weboard, '/img/sort-vector.png')}); }
+	</style>
+	
+	<script src="{!URLFOR($Resource.weboard, '/js/jquery-1.10.2.js')}"></script>
+	<script src="{!URLFOR($Resource.weboard, '/js/jquery-ui-1.10.4.js')}"></script>
+			
+	<div class="report">
+		<h1 class="title">Leaderboard Stats</h1>
+	
+		<div class="switcher">
+			<c:leaderboardReportSwitcher value="0" />
+		</div>	
+		
+		<div class="filter">
+			<c:leaderboardReportToggler value="{!ToggleState}" name0="Occupancy" name1="Tours Completed" name2="Desks Booked" page="{!$Page.LeaderBoard}" />
+		</div>
+		
+		<!-- tables -->
+		<div class="summary">
+			<c:leaderboardBuildingOccupancy rendered="{!ToggleState == 0}" />
+			<c:leaderboardBuildingToursCompleted rendered="{!ToggleState == 1}" />
+			<c:leaderboardBuildingDesksBooked rendered="{!ToggleState == 2}" />
+		</div>
+	</div>
+	
+	<script src="{!URLFOR($Resource.weboard, '/js/weboard.js')}"></script>
+	<script src="{!URLFOR($Resource.weboard, '/js/sort.js')}"></script>	
+	<script>
+		var jq = jQuery.noConflict(true);				
+		
+		function bindSortArrow(scope) {
+			scope.find('.sort-arrow').click(function(e) {
+				sorter.sortTable(e);
+			});
+		}
+		
+		var sorter = new reportTableSorter();
+		bindSortArrow(jq(document));
+	</script>
+</apex:page>

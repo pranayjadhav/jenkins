@@ -1,0 +1,3 @@
+<apex:page readOnly="true" contentType="text/plain; charset=utf-8" standardStylesheets="false" showHeader="false" sidebar="false">
+	<c:weboardTouredByBuildingReport />
+</apex:page>

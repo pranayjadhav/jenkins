@@ -1,0 +1,22 @@
+<apex:page controller="SetupController">
+	
+	<apex:sectionHeader subtitle="Logger Services" title="Logs"/>
+	
+	<apex:outputpanel id="MessagesContainer">
+		<apex:pageMessages />
+	</apex:outputpanel>
+	
+	<apex:form >
+		<apex:pageBlock title="Setup and Settings">
+			<apex:pageBlockButtons >
+	            <apex:commandButton value="Save" action="{!save}"/>
+	        </apex:pageBlockButtons>
+			<apex:pageBlockSection columns="1">
+				
+				<apex:inputField value="{!config.Logger_Enabled__c}"/>
+				
+			</apex:pageBlockSection>			  
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

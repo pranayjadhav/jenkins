@@ -1,0 +1,84 @@
+<apex:page controller="WeBoardAllStatsController" sidebar="false" readOnly="true" action="{!ReplaceParams}">
+	<apex:styleSheet value="{!URLFOR($Resource.weboard, '/css/ui-lightness/jquery-ui-1.10.4.css')}"/>
+	<apex:styleSheet value="{!URLFOR($Resource.weboard, '/css/weboard.css')}"/>
+	<style>
+		span.sort-arrow { background-image:url({!URLFOR($Resource.weboard, '/img/sort-vector.png')}); }
+	</style>
+	
+	<script src="{!URLFOR($Resource.weboard, '/js/jquery-1.10.2.js')}"></script>
+	<script src="{!URLFOR($Resource.weboard, '/js/jquery-ui-1.10.4.js')}"></script>
+			
+	<div class="report">
+		<h1 class="title">WeWork Stats</h1>
+	
+		<div class="switcher">
+			<c:weboardReportSwitcher value="4" />
+		</div>	
+		
+		<div class="filter">
+			<c:weboardReportFilter fromDate="{!FromDateString}" toDate="{!ToDateString}" url="{!$Page.WeBoardAllStats}" cityfilter="{!CityMap}" empty="false" />
+		</div>	
+		
+		<apex:outputPanel layout="block" styleClass="summary" rendered="{!ISBLANK($CurrentPage.parameters.buid)}">
+			<div class="table-name">Sales Funnel</div>
+			<c:weboardCityReport />
+
+			<div class="table-name">Toured By Conversion</div>
+			<c:weboardUserReport />
+					
+			<div class="table-name">Activities</div>
+			<c:weboardActivityCityReport />
+			
+			<div class="table-name">Current Occupancy</div>
+			<c:weboardOccupancyCityReport />
+		</apex:outputPanel>
+		
+		<apex:outputPanel layout="block" styleClass="summary" rendered="{!NOT(ISBLANK($CurrentPage.parameters.buid))}">
+			<div class="table-name">Sales Funnel</div>
+			<c:weboardBuildingReport />
+
+			<div class="table-name">Toured By Conversion</div>
+			<c:weboardUserReport />
+					
+			<div class="table-name">Activities</div>
+			<c:weboardActivityBuildingReport />
+			
+			<div class="table-name">Current Occupancy</div>
+			<c:weboardOccupancyBuildingReport />
+		</apex:outputPanel>
+	</div>
+	
+	<script src="{!URLFOR($Resource.weboard, '/js/weboard.js')}"></script>
+	<script src="{!URLFOR($Resource.weboard, '/js/sort.js')}"></script>	
+	<script>
+		var jq = jQuery.noConflict(true);				
+
+		var	_progressSrc = '{!URLFOR($Resource.weboard, '/img/ajax-loader.gif')}';
+		var _collapseSrc = '{!URLFOR($Resource.weboard, '/img/collapse.png')}';
+		
+		jq('a.city-buid').remove();
+		jq('a.user-city').remove();
+		jq('a.user-buid').remove();
+				
+		attachExpandHandler('a.city-lead', '{!$Page.WeBoardLeadSourceReport}', function(scope) {
+			scope.find('a.lead-buid').remove();
+			scope.find('a.lead-city').remove();
+			bindSortArrow(scope);
+		});	
+		
+		attachExpandHandler('a.buid-lead', '{!$Page.WeBoardLeadSourceReport}', function(scope) {
+			scope.find('a.lead-buid').remove();
+			scope.find('a.lead-city').remove();
+			bindSortArrow(scope);
+		});	
+		
+		function bindSortArrow(scope) {
+			scope.find('.sort-arrow').click(function(e) {
+				sorter.sortTable(e);
+			});
+		}
+		
+		var sorter = new reportTableSorter();
+		bindSortArrow(jq(document));
+	</script>
+</apex:page>
