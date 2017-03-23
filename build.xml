@@ -1,0 +1,41 @@
+<project name="Sample usage of Salesforce Ant tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    </taskdef>
+	
+	<!-- Deploy all the code in the src folder -->
+	<target name="fullcode">
+		<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="./auto-packaging/src/" />
+	</target>
+
+	<!-- Refresh all the code in the src folder -->
+	<target name="refresh">
+		<sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" retrieveTarget="src" unpackaged="src/package.xml" />
+	</target>
+	
+	<!-- Deploy all resources -->
+    <target name="deployAllResources">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="auto-packaging/src/staticresources" rollbackOnError="true"/>
+    </target>
+
+    <!-- Deploy the application resources -->
+    <target name="deployApplicationResources">
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="autodeploy/application-resources" rollbackOnError="true"/>
+    </target>
+	<!-- Deploy the vendor resources -->
+	<target name="deployVendorResources">
+		<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="autodeploy/vendor-resources" rollbackOnError="true"/>
+	</target>
+	<!-- Deploy the Application images -->
+	<target name="deployApplicationImg">
+		<sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="autodeploy/application-img" rollbackOnError="true"/>
+	</target>
+
+	<!-- Deploy a zip of metadata files to the org -->
+    <target name="deployZip">
+      <sf:deploy username="${sf.username}" password="${sf.password}" sessionId="${sf.sessionId}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" zipFile="${sf.zipFile}" pollWaitMillis="1000" rollbackOnError="true"/>
+    </target>
+</project>
